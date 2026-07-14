@@ -4,6 +4,7 @@ package com.itsolutions.ticketallocation.bookings;
 
 import com.itsolutions.ticketallocation.Exception.ResourceNotFoundException;
 import com.itsolutions.ticketallocation.Exception.SeatAlreadyBookedException;
+import com.itsolutions.ticketallocation.Exception.SeatNotFoundException;
 import com.itsolutions.ticketallocation.seats.Seat;
 import com.itsolutions.ticketallocation.seats.SeatRepository;
 import com.itsolutions.ticketallocation.seats.SeatStatus;
@@ -77,10 +78,8 @@ public class BookingService {
     }
 
     private Seat getSeat(Long seatId) {
-
-        return seatRepository.findById(seatId)
-                .orElseThrow(() ->
-                        new ResourceNotFoundException("Seat not found"));
+        return seatRepository.findByIdForUpdate(seatId)
+                .orElseThrow(() -> new SeatNotFoundException("Seat not found"));
     }
 
     private void validateSeatAvailability(Seat seat, String tag) {

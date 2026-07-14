@@ -57,9 +57,13 @@ public class BookingService {
 
         markSeatAsBooked(seat);
 
+// ⭐ Force Hibernate to execute UPDATE seats immediately
+        seatRepository.saveAndFlush(seat);
+
         log.info("INSERTING {}", tag);
 
         Booking booking = createBooking(user, seat);
+
         log.info("COMMITTED bookingId={} {}", booking.getId(), tag);
 
         return mapToResponse(booking);

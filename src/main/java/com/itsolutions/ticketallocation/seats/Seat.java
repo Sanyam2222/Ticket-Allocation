@@ -24,9 +24,9 @@ public class Seat {
     @Enumerated(EnumType.STRING)
     private SeatStatus status;
 
-    @Version
-    @Column(nullable = false)
-    private Long version;
+//    @Version
+//    @Column(nullable = false)
+//    private Long version;
 
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

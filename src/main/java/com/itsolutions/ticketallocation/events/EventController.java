@@ -17,7 +17,6 @@ public class EventController {
     @ResponseStatus(HttpStatus.CREATED)
     public EventResponse createEvent(
             @Valid @RequestBody CreateEventRequest request) {
-
         return eventService.createEvent(request);
     }
 }
